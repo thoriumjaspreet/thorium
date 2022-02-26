@@ -20,3 +20,11 @@ app.use('/', route);
 app.listen(process.env.PORT || 3000, function () {
     console.log('Express app running on port ' + (process.env.PORT || 3000))
 });
+
+
+
+
+// git fetch
+// git branch -a
+//git checkout branchname
+// git checkout -f branchName
