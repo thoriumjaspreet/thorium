@@ -1,23 +1,30 @@
 const express = require('express');
 const router = express.Router();
-// const UserModel= require("../models/userModel.js")
-const UserController= require("../controllers/userController")
-const BookController= require("../controllers/bookController")
-
+ const userModel= require("../models/userModel.js")
+const userController= require("../controllers/userController")
+const Bookcontroller= require("../controllers/bookController")
+const productController = require("../controllers/productcontroller")
+const orderController= require("../controllers/ordercontroller")
+const Middleware= require("../middleware/middleware")
 router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
-router.post("/createUser", UserController.createUser  )
+//router.post("/createUser",Middleware.middleware1, userController.createUser  )
+router.post("/createUser",Middleware.isFreeAppUserMiddleware,userController.createUser  )
 
-router.get("/getUsersData", UserController.getUsersData)
+router.get("/getUsersData", userController.getUsersData)
+router.post("/createProduct",productController.createProduct)
+//router.post("/createOrder", Middleware.middleware1,orderController.createOrder)
+router.post("/createOrder",Middleware.isFreeAppUserMiddleware, orderController.createOrder  )
+router.get("/getOrderData", orderController.getOrderData)
 
-router.post("/createBook", BookController.createBook  )
+//router.post("/createBook", BookController.createBook  )
 
-router.get("/getBooksData", BookController.getBooksData)
+//router.get("/getBooksData", BookController.getBooksData)
 
-router.post("/updateBooks", BookController.updateBooks)
-router.post("/deleteBooks", BookController.deleteBooks)
+//router.post("/updateBooks", BookController.updateBooks)
+//router.post("/deleteBooks", BookController.deleteBooks)
 
 //MOMENT JS
 const moment = require('moment');
